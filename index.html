@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Cursor Property in jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body{
+            text-align:center;
+            font-family: Arial, sans-serif;
+        }
+
+        .row{
+            display:flex;
+            justify-content:center;
+        }
+
+        .box{
+            margin:20px;
+            text-align:left;
+        }
+
+        img{
+            width:300px;
+            height:300px;
+            display:block;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="row">
+    <div class="box">
+        <img class="profile" src="prumon.jpg">
+        <p>Clicked: <span class="count">0</span></p>
+    </div>
+
+    <div class="box">
+        <img class="profile" src="prumon.jpg">
+        <p>Clicked: <span class="count">0</span></p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="box">
+        <img class="profile" src="prumon.jpg">
+        <p>Clicked: <span class="count">0</span></p>
+    </div>
+
+    <div class="box">
+        <img class="profile" src="prumon.jpg">
+        <p>Clicked: <span class="count">0</span></p>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    $(".profile").each(function(){
+
+        let count = 0;
+        let img = $(this);
+        let display = img.next("p").find(".count");
+
+     
+        img.hover(function(){
+            if(count >= 5){
+                img.css("cursor","wait");
+            } else {
+                img.css("cursor","crosshair");
+            }
+        });
+
+      
+        img.click(function(){
+
+            count++;
+
+            if(count > 5){
+                count = 1;
+                img.css("cursor","crosshair");
+            }
+
+            if(count == 5){
+                img.css("cursor","wait");
+            }
+
+            display.text(count);
+        });
+
+    });
+
+});
+</script>
+
+</body>
+</html>
